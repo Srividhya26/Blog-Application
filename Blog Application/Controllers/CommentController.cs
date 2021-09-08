@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Blog_Application.Model;
+using Blog_Application.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,81 +9,68 @@ using System.Threading.Tasks;
 
 namespace Blog_Application.Controllers
 {
+    [ApiController]
+    [Route("[Controller]")]
+
     public class CommentController : Controller
     {
-        // GET: CommentController
-        public ActionResult Index()
+        private readonly IUnitOfWork _work;
+        public CommentController(IUnitOfWork work)
         {
-            return View();
+            _work = work;
+        }
+       
+        //Get comments
+        public ObjectResult GetComment()
+        {
+            List<Comment> comments = _work.comments.GetAll().ToList();
+
+            return Ok(comments);
         }
 
-        // GET: CommentController/Details/5
-        public ActionResult Details(int id)
+        //Get comment by ID
+        [HttpGet]
+        public ObjectResult GetCommentById(int id)
         {
-            return View();
+            Comment comments = _work.comments.Get(id);
+            if(comments == null)
+            {
+                throw new Exception("Not Found");
+            }
+            return Ok(comments);
         }
 
-        // GET: CommentController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CommentController/Create
+        //Add Comment
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public OkResult PostNewComment(Comment comment)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                throw new Exception("Invalid data.");
             }
-            catch
-            {
-                return View();
-            }
+
+            _work.comments.Add(comment);
+            _work.save();
+
+            return Ok();
         }
 
-        // GET: CommentController/Edit/5
-        public ActionResult Edit(int id)
+        //Delete Method
+        [HttpDelete]
+        public OkResult DeleteComment(int id)
         {
-            return View();
+            var comment = _work.comments.Get(id);
+
+            if (comment == null)
+            {
+                throw new Exception("Not Found");
+            }
+
+            _work.comments.Remove(comment);
+            _work.save();
+
+            return Ok();
         }
 
-        // POST: CommentController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CommentController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CommentController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

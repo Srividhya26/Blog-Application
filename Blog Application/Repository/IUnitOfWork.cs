@@ -9,6 +9,7 @@ namespace Blog_Application.Repository
     public interface IUnitOfWork : IDisposable
     {
         IRepository<Blog> blogs { get; }
+        IRepository<Comment> comments { get; }
         void save();
     }
 }

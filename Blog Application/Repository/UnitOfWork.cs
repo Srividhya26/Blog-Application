@@ -11,12 +11,14 @@ namespace Blog_Application.Repository
     {
         private readonly MyDbContext _db;
         private IRepository<Blog> _blogs;
+        private IRepository<Comment> _comments;
         public UnitOfWork(MyDbContext db)
         {
             _db = db;
         }
 
         public IRepository<Blog> blogs => _blogs ??= new Repository<Blog>(_db);
+        public IRepository<Comment> comments => _comments ??= new Repository<Comment>(_db);
 
         public void Dispose()
         {
