@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Blog_Application_Data_access.Data
+namespace Blog_Application.Model
 {
-    public class MyDbContext
+    public class Comment
     {
     }
 }

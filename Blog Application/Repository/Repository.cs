@@ -36,7 +36,13 @@ namespace Blog_Application.Repository
         }
 
         public void Update(T entity)
-        {            
+        {
+            _db.Update(entity);
+        }
+
+        public void Update(int id)
+        {
+            var entity = _db.Find<T>(id);
             _db.Update(entity);
         }
     }

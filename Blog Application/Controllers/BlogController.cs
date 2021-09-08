@@ -51,13 +51,14 @@ namespace Blog_Application.Controllers
         [HttpPut]
         public void Edit(Blog blog)
         {
-            Blog newblog = new()
-            {
-                BlogTitle = blog.BlogTitle,
-                Content = blog.Content
-            };
+          Blog newblog = new()
+          {
+             BlogTitle = blog.BlogTitle,
+             Content = blog.Content
+          };
 
-            _work.blogs.Update(newblog);
+          _work.blogs.Update(blog);
+          _work.save();         
         }
 
         ////delete a blog
