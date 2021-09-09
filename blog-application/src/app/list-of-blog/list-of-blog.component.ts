@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import {AuthService} from 'src/app/auth.service';
 
 @Component({
   selector: 'app-list-of-blog',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListOfBlogComponent implements OnInit {
 
-  constructor() { }
+  currentBlog : any;
+
+  id !: number;
+
+  constructor(private blogService : AuthService,private route : ActivatedRoute,private router : Router) { }
 
   ngOnInit(): void {
+      this.blogService.getItem(this.route.snapshot.params['id']).subscribe((data : any) => {
+        this.currentBlog = data;
+      });
   }
+
+  
 
 }

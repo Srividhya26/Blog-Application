@@ -1,6 +1,23 @@
 <div>
     <div>
-        <button class="col-1 btn btn-primary" style="float: right; margin-left: 10px; margin-top: 10px;"> Edit Blog </button>
-        <button class="col-1 btn btn-primary" style="float: right; margin-top: 10px;"> Add Blog</button>
+        <button class="col-2 btn btn-primary" style="float: right; margin-top: 10px;" (click)="gotoadd()"> Add New Blog </button>
     </div>
+</div>
+<div class="row">
+    <h3 class="text-center" style="text-align: center;"> Available Blogs </h3>
+</div>
+<div class="row" style="margin-left: 150px;">
+<div class="left-box row col-12 text-center">
+    <div class=" "> 
+       <div class="card single_post" *ngFor = "let blog of blogs;let i = index;">
+          <div class="body">
+            <div class="img-post">
+                <img class="d-block img-fluid" src="https://assets-global.website-files.com/5dd290508931f3d66d83469e/5f524161ef315f68ec5a7d39_guest-blog-post.jpeg" alt="First slide">
+            </div>
+            <h3> <a routerLink ="/blogs/{{blog.id}}"> {{blog.blogTitle}} </a></h3>
+            <p> {{blog.content}}... <a routerLink ="/blogs/{{blog.id}}"> Read more </a></p>
+          </div>
+       </div>
+    </div>
+</div>
 </div>

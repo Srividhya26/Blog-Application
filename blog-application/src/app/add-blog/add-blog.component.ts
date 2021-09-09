@@ -8,47 +8,29 @@ import {AuthService} from 'src/app/auth.service';
 })
 export class AddBlogComponent implements OnInit {
 
-  blog = {
-    title : '',
-    content : ''
+  data = {
+    blogTitle : ' ',
+    content : ' '
   };
+
+  constructor(private blogs : AuthService){}
+
+  ngOnInit(): void {
+     
+  }
 
   isBlogAdded = false;
 
-  constructor(private blogs : AuthService) { }
-
-  ngOnInit(): void {
-  }
-
-  addBlog(): void
+  addNewBlog() : void
   {
-    const data = {
-      title : this.blog.title,
-      content : this.blog.content
+   
+    const datas = {
+      blogTitle: this.data.blogTitle,
+      content: this.data.content
     };
 
-    // if(!data.title)
-    // {
-    //   alert('please add a blog title');
-    //   return;
-    // }
-
-    this.blogs.create(data).subscribe(response => {
-      console.log(response);
-      this.isBlogAdded = true;
-    },
-    error =>
-    {
-      console.log(error);
-    });
-  }
-  
-  newBook() : void{
-    this.isBlogAdded = false;
-    this.blog = {
-      title : '',
-      content : ''
-    };
+    this.blogs.create(datas)
+      .subscribe((data) => {console.warn("added"),datas})
   }
 
 }
