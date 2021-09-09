@@ -6,18 +6,25 @@ import { AppComponent } from './app.component';
 import { AddBlogComponent } from './add-blog/add-blog.component';
 import { DisplayBlogComponent } from './display-blog/display-blog.component';
 import { ListOfBlogComponent } from './list-of-blog/list-of-blog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditBlogComponent } from './edit-blog/edit-blog.component';
+import { CommentsBlogComponent } from './comments-blog/comments-blog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddBlogComponent,
     DisplayBlogComponent,
-    ListOfBlogComponent
+    ListOfBlogComponent,
+    EditBlogComponent,
+    CommentsBlogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

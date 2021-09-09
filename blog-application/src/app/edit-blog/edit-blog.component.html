@@ -1,0 +1,16 @@
+<div *ngIf="dataLoaded">
+    <h2> Update Blog Content </h2> 
+    <form [formGroup]="editForm" (submit) = "editBlog()"> 
+        <div class="row" style="margin-top: 20px;">
+            <input class="form-control col-12"  placeholder="Add a Title" formControlName="blogTitle" />
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <textarea placeholder="Add content" class="form-control col-12" formControlName="content" style="min-height:350px">
+                
+            </textarea>
+        </div>
+        <button class="col-2 btn btn-primary" style=" margin-top: 10px;" > Update Blog </button>
+    </form>
+</div>
+
+

@@ -1,14 +1,18 @@
 <div>
-    <div class="row" style="margin-top: 20px;">
-        <input class="form-control col-12" placeholder="Add a Title"/>
+    <div>
+        <h3> Add new blog here </h3>
     </div>
     <div class="row" style="margin-top: 20px;">
-        <textarea placeholder="Add content" class="form-control col-12"  style="min-height:350px">
+        <input class="form-control col-12"  placeholder="Add a Title" required [(ngModel)] = "data.blogTitle"/>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <textarea placeholder="Add content" class="form-control col-12" required [(ngModel)] = "data.content" style="min-height:350px">
             
         </textarea>
     </div>
+    
     <div>
-        <button class="col-1 btn btn-primary" style="float: right; margin-left: 10px; margin-top: 10px;"> Edit </button>
-        <button class="col-1 btn btn-primary" style="float: right; margin-top: 10px;"> Add </button>
+        <button class="col-1 btn btn-danger" style="float: right; margin-left: 10px; margin-top: 10px;"> Edit </button>
+        <button (click) = "addNewBlog()" class="col-1 btn btn-primary" style="float: right; margin-top: 10px;" > Add </button>
     </div>
 </div>
