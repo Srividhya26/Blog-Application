@@ -20,7 +20,4 @@ export class ListOfBlogComponent implements OnInit {
         this.currentBlog = data;
       });
   }
-
-  
-
 }

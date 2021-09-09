@@ -7,7 +7,7 @@
     <h3 class="text-center" style="text-align: center;"> Available Blogs </h3>
 </div>
 <div class="row" style="margin-left: 150px;">
-<div class="left-box row col-12 text-center">
+<div class="row col-12 text-center">
     <div class=" "> 
        <div class="card single_post" *ngFor = "let blog of blogs;let i = index;">
           <div class="body">
@@ -16,6 +16,7 @@
             </div>
             <h3> <a routerLink ="/blogs/{{blog.id}}"> {{blog.blogTitle}} </a></h3>
             <p> {{blog.content}}... <a routerLink ="/blogs/{{blog.id}}"> Read more </a></p>
+            <button class="btn btn-danger"> <a style=" text-decoration: none; color: white;" routerLink = "/edit/{{blog.id}}"> Edit this blog </a> </button>
           </div>
        </div>
     </div>

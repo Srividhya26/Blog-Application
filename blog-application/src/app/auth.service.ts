@@ -10,13 +10,12 @@ import { AddBlogComponent } from './add-blog/add-blog.component';
 export class AuthService {
 
   apiurl: string = 'https://localhost:44356/blog';
-  headers = new HttpHeaders().set('Content-Type','application/json');
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  ngOnit()
-  {
-   
+  ngOnit() {
+
   }
 
   //show list of items
@@ -32,20 +31,15 @@ export class AuthService {
     );
   }
 
-  create(data : any) : Observable<any>
-  {
-    return this.http.post(this.apiurl,data)
+  create(data: any): Observable<any> {
+    return this.http.post(this.apiurl, data)
   }
 
-  
-
-  
-
-  // update(id: any, data: any): Observable<any> {
-  //   return this.http.put(`${this.apiurl}/${id}`, data).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
+  update(id: any, data: any): Observable<any> {
+    return this.http.put(`${this.apiurl}`, data).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   // delete(id: any): Observable<any> {
   //   return this.http.delete(`${this.apiurl}/${id}`).pipe(
