@@ -15,5 +15,7 @@ namespace Blog_Application.Data
         }
 
         public DbSet<Blog> blogs { get; set; }
+
+        public DbSet<Comment> comments { get; set; }
     }
 }

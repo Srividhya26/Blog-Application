@@ -1,6 +1,7 @@
 ﻿using Blog_Application.Data;
 using Blog_Application.Model;
 using Blog_Application.Repository;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Blog_Application.Controllers
 {
+   
     [ApiController]
     [Route("[controller]")]
     public class BlogController : Controller
@@ -36,9 +38,7 @@ namespace Blog_Application.Controllers
             return _work.blogs.Get(id);
         }
 
-
         //create a blog
-
         [HttpPost]
         public Blog Create(Blog blog)
         {

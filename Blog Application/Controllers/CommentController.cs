@@ -1,5 +1,6 @@
 ﻿using Blog_Application.Model;
 using Blog_Application.Repository;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Blog_Application.Controllers
 {
+
     [ApiController]
     [Route("[Controller]")]
 
@@ -19,8 +21,9 @@ namespace Blog_Application.Controllers
         {
             _work = work;
         }
-       
+
         //Get comments
+        [HttpGet]
         public ObjectResult GetComment()
         {
             List<Comment> comments = _work.comments.GetAll().ToList();
@@ -29,11 +32,11 @@ namespace Blog_Application.Controllers
         }
 
         //Get comment by ID
-        [HttpGet]
+        [HttpGet("{id}")]
         public ObjectResult GetCommentById(int id)
         {
             Comment comments = _work.comments.Get(id);
-            if(comments == null)
+            if (comments == null)
             {
                 throw new Exception("Not Found");
             }
@@ -72,5 +75,5 @@ namespace Blog_Application.Controllers
             return Ok();
         }
 
+        //}
     }
-}
